@@ -1,0 +1,48 @@
+<idea-plugin>
+    <id>com.branchcommit.branch-commit-formatter</id>
+    <name>Branch Commit Formatter</name>
+    <version>1.0.0</version>
+    <vendor>BranchCommit</vendor>
+
+    <description><![CDATA[
+    Automatically formats Git branch names into structured commit messages.<br/><br/>
+    Converts branch names like <b>feature/ABC-1234_Add_function_comment</b>
+    into commit messages like <b>[ABC-1234] Add function comment</b>.<br/><br/>
+    Features:<br/>
+    <ul>
+        <li>Auto-fills commit message when opening the commit dialog (if empty)</li>
+        <li>Manual action "Format Branch to Commit Message" available in VCS menu</li>
+        <li>Supports branch prefixes: feature/, bugfix/, hotfix/, or no prefix</li>
+        <li>Customizable regex pattern and output format via Settings</li>
+        <li>Live preview to test your pattern configuration</li>
+        <li>Enable/disable toggle</li>
+    </ul>
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>Git4Idea</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService serviceImplementation="com.branchcommit.BranchCommitSettings"/>
+        <applicationConfigurable
+            parentId="tools"
+            instance="com.branchcommit.BranchCommitConfigurable"
+            id="com.branchcommit.BranchCommitConfigurable"
+            displayName="Branch Commit Formatter"/>
+        <checkinHandlerFactory implementation="com.branchcommit.BranchCommitHandlerFactory"/>
+        <toolWindow id="Branch Commit"
+                    anchor="bottom"
+                    secondary="true"
+                    factoryClass="com.branchcommit.BranchCommitToolWindowFactory"
+                    icon="AllIcons.Vcs.Branch"/>
+    </extensions>
+
+    <actions>
+        <action id="BranchCommitFormatter.FormatBranch"
+                class="com.branchcommit.FormatBranchAction"
+                text="Format Branch to Commit Message"
+                description="Formats the current Git branch name into a structured commit message">
+            <add-to-group group-id="Vcs.MessageActionGroup" anchor="first"/>
+        </action>
+    </actions>
+</idea-plugin>
