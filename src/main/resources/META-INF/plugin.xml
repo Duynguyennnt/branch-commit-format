@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.branchcommit.branch-commit-formatter</id>
     <name>Branch Commit Formatter</name>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <vendor>BranchCommit</vendor>
 
     <description><![CDATA[
@@ -18,6 +18,19 @@
         <li>Enable/disable toggle</li>
     </ul>
     ]]></description>
+
+    <change-notes><![CDATA[
+    <b>1.0.1</b>
+    <ul>
+        <li>Update icon plugin (BranchCommit icon)</li>
+    </ul>
+    <b>1.0.0</b>
+    <ul>
+        <li>Initial release</li>
+        <li>Auto-fill commit message from branch name</li>
+        <li>Manual action "Format Branch to Commit Message"</li>
+    </ul>
+    ]]></change-notes>
 
     <depends>com.intellij.modules.platform</depends>
     <depends>Git4Idea</depends>
